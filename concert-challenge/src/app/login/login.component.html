@@ -1,0 +1,27 @@
+<div class = 'login'>
+    <div class = 'logo'>
+        <img src='../../assets/logo_horizontal.jpg'>
+    </div>
+    <mat-card class = "login-card">
+        <form [formGroup]="loginFormGroup" (submit)="submit()" class='login-form'>
+            <mat-form-field appearance="outline">
+                <mat-label>Login</mat-label>
+                <input type="text" matInput formControlName = "login">
+                <mat-error *ngIf='loginFormGroup.controls.login.invalid'>
+                    O Login é obrigatório
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName = "password">
+                <mat-error *ngIf='loginFormGroup.controls.password.invalid'>
+                    A senha é obrigatória
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button type="submit">Logar</button>
+
+        </form>
+    </mat-card> 
+</div>
