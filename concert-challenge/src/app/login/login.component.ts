@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,22 +15,21 @@ export class LoginComponent implements OnInit {
     password : new FormControl('',Validators.required)
   })
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   submit() {
+    console.log(this.loginFormGroup.value);
     if (!this.loginFormGroup.valid) {
       return;
     }
-    console.log(this.loginFormGroup.value);
-
-    if(this.loginFormGroup.value.login === 'concert' && 
-        this.loginFormGroup.value.password === 'prova'){
-          console.log('logado com sucesso');
-    }
-
+    else{
+      this.authService.login(this.loginFormGroup.value);
+    }  
   }
 
 }
+
+
