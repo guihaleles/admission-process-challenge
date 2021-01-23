@@ -12,16 +12,12 @@ export class CrudService<T> {
 
   list() {
     console.log(`${this.API}${this.route}`);
-    return this.http.get<T[]>(`${this.API}${this.route}`)
-      .pipe(
-        delay(2000)
-      );
+    return this.http.get<T[]>(`${this.API}${this.route}`);
   }
 
   register(item:T){
     return this.http.post(`${this.API}${this.route}`, item)
     .pipe(
-      delay(2000),
       take(1)
     );      
   }
@@ -31,7 +27,6 @@ export class CrudService<T> {
     console.log(item);
     return this.http.put(`${this.API}${this.route}/${id}`, item)
     .pipe(
-      delay(2000),
       take(1)
     );      
   }
@@ -39,7 +34,6 @@ export class CrudService<T> {
   delete(id:number){
     return this.http.delete(`${this.API}${this.route}/${id}`)
     .pipe(
-      delay(2000),
       take(1)
     );      
   }

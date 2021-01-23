@@ -85,7 +85,7 @@
                 <mat-label>Email</mat-label>
                 <input type="email" matInput formControlName = "email">
                 <mat-error *ngIf='formGroup.controls.email.invalid'>
-                    Campo obrigatório!
+                    Campo inválido!
                 </mat-error>
             </mat-form-field>
     
@@ -106,11 +106,16 @@
             <label>
                 Gênero:
             </label>
-            <mat-radio-group aria-label="Select an option" formControlName = "gender">
-                <mat-radio-button value="Masculino">Masculino</mat-radio-button>
-                <mat-radio-button value="Feminino">Feminino</mat-radio-button>
-                <mat-radio-button value="Outro">Outro</mat-radio-button>
-            </mat-radio-group> 
+            <!-- <mat-form-field> -->
+                <mat-radio-group aria-label="Select an option" formControlName = "gender">
+                    <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+                    <mat-radio-button value="Feminino">Feminino</mat-radio-button>
+                    <mat-radio-button value="Outro">Outro</mat-radio-button>
+                </mat-radio-group> 
+                <!-- <mat-error *ngIf='formGroup.controls.gender.invalid'>
+                    Campo obrigatório!
+                </mat-error> -->
+            <!-- </mat-form-field> -->
     
         </section>
 

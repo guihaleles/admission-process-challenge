@@ -8,39 +8,42 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { GlobalService } from './services/global.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
-  animations: [
-    trigger('openClose', [
-      state('open', style({
-        width: '12vw',
-      })),
-      state('closed', style({
-        width: '6vw',
-      })),
-      transition('open => closed', [
-        animate('1s')
-      ]),
-      transition('closed => open', [
-        animate('0.5s')
-      ]),
-    ]),
-  ],
+  styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
   title = 'concert-challenge';
-  isLoggedIn$: Observable<boolean>; 
+  isLoggedIn$: Observable<boolean>;
+  isloading: boolean = false;
   isOpen = true; 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private globalService:GlobalService) { }
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn; 
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+    this.subscribe();
   }
 
   toggle() {
     this.isOpen = !this.isOpen;
+  }
+
+  subscribe(){
+    this.globalService.loadigSubject
+                  .pipe(
+                    // To avoid an error
+                    delay(0),
+                  )
+                  .subscribe(
+                    (data:boolean) => {
+                      this.isloading = data;
+                      console.log("app componente change") 
+                      console.log(data)
+                    }
+                  )
   }
 }

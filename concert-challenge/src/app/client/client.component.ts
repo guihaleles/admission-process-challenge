@@ -3,6 +3,7 @@ import { CrudService } from '../services/crud.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 
 export interface client{
   id: number
@@ -23,8 +24,7 @@ export const REGIONS = ["Norte", "Nordeste", "Centroeste", "Suldeste", "Sul"];
 })
 export class ClientComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'region', 'gender', 'information', 'edit', 'delete'];
-  clients: Array<client> = [];
-  dataSource: Array<client>;
+  dataSource: Array<client> = [];
   pageName = 'Clientes:';
   crud: CrudService<client>;
   action: number = 0;  //0:None  1:Search  2:Create  3:Edit 
@@ -40,16 +40,15 @@ export class ClientComponent implements OnInit {
     information: new FormControl(false)
   })
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private snackbar :SnackbarComponent) {
     this.crud = new CrudService(http,'client')
   }
 
-  ngOnInit(): void {
-    this.dataSource = this.clients;
-  }
+  ngOnInit(): void { }
 
   addItem(){
     this.action = 2;
+    this.formGroup.reset();
     console.log("adding");
   }
 
@@ -61,11 +60,13 @@ export class ClientComponent implements OnInit {
 
   list(value:string){
     this.action = 1;
+    this.dataSource = [];
     console.log('list');
     this.crud.list().subscribe(
       (response) => {
         this.dataSource = response;
         console.log(this.dataSource);
+        this.snackbar.openuSuccessSnackBar('Sucesso ao buscar os clientes!')      
       }    
     );
 
@@ -73,34 +74,37 @@ export class ClientComponent implements OnInit {
 
   submit(){
     let client:client;
-    client = this.formGroup.value;
 
-    console.log(this.action);
-    switch(this.action) {
-      case 2: this.register(client);
-      case 3: this.update(client);
-      default: return;
-     }
+    if(this.formGroup.valid){
+      client = this.formGroup.value;
+      console.log(this.action);
+      switch(this.action) {
+        case 2: {this.register(client); return;}
+        case 3: {this.update(client); return;}
+        default: return;
+       }
+    }
   }
 
   register(value:client){
+    console.log('post')
     console.log(value)
     this.crud.register(value).subscribe(
       () => {
-        console.log('sucesso');
-        this.list('');
+        this.snackbar.openuSuccessSnackBar('Sucesso ao cadastrar o cliente!') 
+        this.action = 0;
       }
     );
   }
 
 
   update(value:client){
-    console.log(value)
-    console.log('update')
+    console.log(this.action);
+    console.log('update');
     this.crud.update(value, value.id).subscribe(
       () => {
-        console.log('sucesso');
-        this.list('');
+        this.snackbar.openuSuccessSnackBar('Sucesso ao atualizar o cliente!')
+        this.action = 0;
       }
     );
   }
@@ -108,8 +112,8 @@ export class ClientComponent implements OnInit {
   delete(value:client){
     this.crud.delete(value.id).subscribe(
       () => {
-        console.log('sucesso');
-        this.list('');
+        this.snackbar.openuSuccessSnackBar('Sucesso ao deletar o cliente!')
+        this.action = 0;
       }
     );
   }

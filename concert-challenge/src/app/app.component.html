@@ -1,19 +1,18 @@
+
 <mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav [@openClose]="isOpen ? 'open' : 'closed'" mode="side" *ngIf="isLoggedIn$ | async"opened>
-    <section>
-      <button mat-icon-button (click)='toggle()'>
-        <mat-icon>menu</mat-icon>
-      </button>
+  <mat-sidenav mode="side" *ngIf="isLoggedIn$ | async"opened>
+    <section class="menu-header">
+      <h2>Menu</h2>
     </section>
     <section>
-      <button mat-icon-button >
-        <a *ngIf='isOpen'>Usuário</a>
+      <button mat-icon-button [routerLink]="['/client']">
+        <a>Clientes</a>
         <mat-icon>person</mat-icon>
       </button>
     </section>
     <section>
-      <button mat-icon-button >
-        <a *ngIf='isOpen'>Produtos</a>
+      <button mat-icon-button [routerLink]="['/product']">
+        <a>Produtos</a>
         <mat-icon>archive</mat-icon>
       </button>
     </section>
@@ -22,5 +21,7 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<app-spinner *ngIf="isloading"></app-spinner>
 
 <!-- <router-outlet *ngIf="!(isLoggedIn$ | async)"></router-outlet> -->

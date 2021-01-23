@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,8 +22,11 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule} from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DeleteModalComponent } from './shared/delete-modal/delete-modal.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { GlobalErrorHandler } from './services/global-error-handler.service';
+import { RequestInterceptor } from './interceptor/request-interceptor.interceptor';
 
 
 @NgModule({
@@ -32,7 +35,7 @@ import { DeleteModalComponent } from './shared/delete-modal/delete-modal.compone
     LoginComponent,
     ClientComponent,
     TopBarComponent,
-    DeleteModalComponent
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +54,23 @@ import { DeleteModalComponent } from './shared/delete-modal/delete-modal.compone
     MatNativeDateModule,
     MatSelectModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
+    { 
+    // processes all errors
+    provide: ErrorHandler, 
+    useClass: GlobalErrorHandler,
+    // multi: true 
+    },
+    {   
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
