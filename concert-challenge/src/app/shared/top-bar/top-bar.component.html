@@ -1,0 +1,24 @@
+<mat-card class="top-bar">
+    <a>
+        {{pageName}}
+    </a>
+
+    <mat-form-field>
+        <mat-label>Filtrar</mat-label>
+        <input matInput type="text" (input)= "filter = $event.target.value">
+    </mat-form-field>
+
+    <button (click)="list()" mat-raised-button color="primary">
+        Listar
+        <mat-icon>search</mat-icon>
+    </button>
+
+    <button (click)="addNewItem()" mat-raised-button color="primary">
+        Cadastrar
+        <mat-icon>library_add</mat-icon>
+    </button>
+
+
+</mat-card>
+
+

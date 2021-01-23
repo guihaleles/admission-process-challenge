@@ -1,6 +1,22 @@
 <mat-sidenav-container class="sidenav-container" >
-  <mat-sidenav mode="side" *ngIf="isLoggedIn$ | async"opened>
-    <h1>Menu</h1>
+  <mat-sidenav [@openClose]="isOpen ? 'open' : 'closed'" mode="side" *ngIf="isLoggedIn$ | async"opened>
+    <section>
+      <button mat-icon-button (click)='toggle()'>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </section>
+    <section>
+      <button mat-icon-button >
+        <a *ngIf='isOpen'>Usuário</a>
+        <mat-icon>person</mat-icon>
+      </button>
+    </section>
+    <section>
+      <button mat-icon-button >
+        <a *ngIf='isOpen'>Produtos</a>
+        <mat-icon>archive</mat-icon>
+      </button>
+    </section>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
