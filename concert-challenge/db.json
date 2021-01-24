@@ -1,0 +1,66 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "client": [
+    {
+      "id": 2,
+      "name": "Guilherme",
+      "date": "2021-01-08T03:00:00.000Z",
+      "email": "guilherme@gmail.com",
+      "region": "Suldeste",
+      "gender": "Masculino",
+      "information": false
+    },
+    {
+      "id": 3,
+      "name": "Guilherme",
+      "date": "2020-10-15T03:00:00.000Z",
+      "email": "guilherme@gmail.com",
+      "region": "Centroeste",
+      "gender": "Feminino",
+      "information": true
+    },
+    {
+      "id": 4,
+      "name": "Guilherme",
+      "date": "2021-01-04T03:00:00.000Z",
+      "email": "guilherme@gmail.com",
+      "region": "Sul",
+      "gender": "Outro",
+      "information": true
+    },
+    {
+      "id": 5,
+      "name": "Guilherme",
+      "date": "2021-01-07T03:00:00.000Z",
+      "email": "guilherme@gmail.com",
+      "region": "Sul",
+      "gender": "Masculino",
+      "information": false
+    },
+    {
+      "id": 6,
+      "name": "Guilherme",
+      "date": "2021-01-05T03:00:00.000Z",
+      "email": "guilherme@gmail.com",
+      "region": "Nordeste",
+      "gender": "Feminino",
+      "information": false
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

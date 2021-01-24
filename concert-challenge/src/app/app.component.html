@@ -1,10 +1,27 @@
+
 <mat-sidenav-container class="sidenav-container" >
   <mat-sidenav mode="side" *ngIf="isLoggedIn$ | async"opened>
-    <h1>Menu</h1>
+    <section class="menu-header">
+      <h2>Menu</h2>
+    </section>
+    <section>
+      <button mat-icon-button [routerLink]="['/client']">
+        <a>Clientes</a>
+        <mat-icon>person</mat-icon>
+      </button>
+    </section>
+    <section>
+      <button mat-icon-button [routerLink]="['/product']">
+        <a>Produtos</a>
+        <mat-icon>archive</mat-icon>
+      </button>
+    </section>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<app-spinner *ngIf="isloading"></app-spinner>
 
 <!-- <router-outlet *ngIf="!(isLoggedIn$ | async)"></router-outlet> -->

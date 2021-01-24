@@ -1,0 +1,16 @@
+.spineer-container{
+  background: rgba(0,0,0,.32);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
