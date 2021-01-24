@@ -9,13 +9,11 @@ export interface product{
   id: number
   name: string,
   date: Date,
-  email: string,
-  region: string, //select regiões do brasil
-  gender: string, //radio
-  information: boolean
+  description: string,
+  type: string, //select regiões do brasil
 }
 
-export const REGIONS = ["Norte", "Nordeste", "Centroeste", "Suldeste", "Sul"];
+export const TYPE = ["Tipo 1", "Tipo 2", "Tipo 3"];
 
 @Component({
   selector: 'app-product',
@@ -23,21 +21,19 @@ export const REGIONS = ["Norte", "Nordeste", "Centroeste", "Suldeste", "Sul"];
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'region', 'gender', 'information', 'edit', 'delete'];
+  displayedColumns: string[] = ['name', 'date', 'description', 'type', 'edit', 'delete'];
   dataSource: Array<product> = [];
-  pageName = 'Productes:';
+  pageName = 'Produtos:';
   crud: CrudService<product>;
   action: number = 0;  //0:None  1:Search  2:Create  3:Edit 
-  regions: string[] = REGIONS;
+  types: string[] = TYPE;
 
   formGroup = new FormGroup({
     id: new FormControl(),
     name : new FormControl('',Validators.required),
     date : new FormControl(null,Validators.required),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    region: new FormControl('',Validators.required),
-    gender: new FormControl('',Validators.required),
-    information: new FormControl(false)
+    description: new FormControl('',Validators.required),
+    type: new FormControl('',Validators.required),
   })
 
   constructor(private http: HttpClient, private snackbar :SnackbarComponent) {
@@ -66,7 +62,7 @@ export class ProductComponent implements OnInit {
       (response) => {
         this.dataSource = response;
         console.log(this.dataSource);
-        this.snackbar.openuSuccessSnackBar('Sucesso ao buscar os productes!')      
+        this.snackbar.openuSuccessSnackBar('Sucesso ao buscar os produtos!')      
       }    
     );
 
@@ -84,6 +80,9 @@ export class ProductComponent implements OnInit {
         default: return;
        }
     }
+    else{
+      this.snackbar.openErrorSnackBar('Campo inválido')
+    }
   }
 
   register(value:product){
@@ -91,7 +90,7 @@ export class ProductComponent implements OnInit {
     console.log(value)
     this.crud.register(value).subscribe(
       () => {
-        this.snackbar.openuSuccessSnackBar('Sucesso ao cadastrar o producte!') 
+        this.snackbar.openuSuccessSnackBar('Sucesso ao cadastrar o produto!') 
         this.action = 0;
       }
     );
@@ -103,7 +102,7 @@ export class ProductComponent implements OnInit {
     console.log('update');
     this.crud.update(value, value.id).subscribe(
       () => {
-        this.snackbar.openuSuccessSnackBar('Sucesso ao atualizar o producte!')
+        this.snackbar.openuSuccessSnackBar('Sucesso ao atualizar o produto!')
         this.action = 0;
       }
     );
@@ -112,7 +111,7 @@ export class ProductComponent implements OnInit {
   delete(value:product){
     this.crud.delete(value.id).subscribe(
       () => {
-        this.snackbar.openuSuccessSnackBar('Sucesso ao deletar o producte!')
+        this.snackbar.openuSuccessSnackBar('Sucesso ao deletar o produto!')
         this.action = 0;
       }
     );

@@ -9,24 +9,19 @@
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="region">
-        <th mat-header-cell *matHeaderCellDef> Região </th>
-        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Descrição </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="gender">
-        <th mat-header-cell *matHeaderCellDef> Gênero </th>
-        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="information">
-        <th mat-header-cell *matHeaderCellDef> Receber informação </th>
-        <td mat-cell *matCellDef="let element"> {{element.information}} </td>
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
     </ng-container>
 
     <ng-container matColumnDef="edit">
@@ -70,7 +65,7 @@
             </mat-form-field>
     
             <mat-form-field appearance="outline">
-                <mat-label>Data de nascimento</mat-label>
+                <mat-label>Data</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName = "date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -82,46 +77,26 @@
 
         <section>
             <mat-form-field appearance="outline" class="name">
-                <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName = "email">
-                <mat-error *ngIf='formGroup.controls.email.invalid'>
-                    Campo inválido!
+                <mat-label>Descrição</mat-label>
+                <input type="text" matInput formControlName = "description">
+                <mat-error *ngIf='formGroup.controls.description.invalid'>
+                    Campo obrigatório!
                 </mat-error>
             </mat-form-field>
     
             <mat-form-field appearance="outline">
-                <mat-label>Região</mat-label>
-                <mat-select formControlName = "region">
-                    <mat-option *ngFor="let region of regions" [value]="region">
-                    {{region}}
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName = "type">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                    {{type}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf='formGroup.controls.region.invalid'>
+                <mat-error *ngIf='formGroup.controls.type.invalid'>
                     Campo obrigatório!
                 </mat-error>
             </mat-form-field>
         </section>
-       
-        <section>
-            <label>
-                Gênero:
-            </label>
-            <!-- <mat-form-field> -->
-                <mat-radio-group aria-label="Select an option" formControlName = "gender">
-                    <mat-radio-button value="Masculino">Masculino</mat-radio-button>
-                    <mat-radio-button value="Feminino">Feminino</mat-radio-button>
-                    <mat-radio-button value="Outro">Outro</mat-radio-button>
-                </mat-radio-group> 
-                <!-- <mat-error *ngIf='formGroup.controls.gender.invalid'>
-                    Campo obrigatório!
-                </mat-error> -->
-            <!-- </mat-form-field> -->
-    
-        </section>
 
-        <section class="check-box">
-            <mat-checkbox formControlName = 'information'>Enviar informações por email</mat-checkbox>
-        </section>
 
         <section class="button-section">
             <button mat-raised-button type="submit">Salvar</button>
