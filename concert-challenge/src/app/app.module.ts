@@ -15,6 +15,7 @@ import { MatCardModule} from '@angular/material/card';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon'
 import { ClientComponent } from './client/client.component';
+import { ProductComponent} from './product/product.component';
 import { TopBarComponent } from './shared/top-bar/top-bar.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -34,6 +35,7 @@ import { RequestInterceptor } from './interceptor/request-interceptor.intercepto
     AppComponent,
     LoginComponent,
     ClientComponent,
+    ProductComponent,
     TopBarComponent,
     SpinnerComponent
   ],
