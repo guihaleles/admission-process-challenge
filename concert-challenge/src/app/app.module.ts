@@ -8,36 +8,18 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'; 
-import { MatCardModule} from '@angular/material/card';
-import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon'
-import { ClientComponent } from './client/client.component';
-import { ProductComponent} from './product/product.component';
-import { TopBarComponent } from './shared/top-bar/top-bar.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatSelectModule} from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { GlobalErrorHandler } from './services/global-error-handler.service';
 import { RequestInterceptor } from './interceptor/request-interceptor.interceptor';
+import { ProductModule } from './product/product.module';
+import { SharedModule } from './shared/material/shared.module';
+import { ClientModule } from './client/client.module'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ClientComponent,
-    ProductComponent,
-    TopBarComponent,
-    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,20 +27,10 @@ import { RequestInterceptor } from './interceptor/request-interceptor.intercepto
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatTableModule,
-    MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
-    MatSnackBarModule
+    ProductModule,
+    SharedModule,
+    ClientModule
   ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
     { 

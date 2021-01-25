@@ -60,7 +60,20 @@
       "information": false
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "product": [
+    {
+      "id": 2,
+      "name": "Produto A",
+      "date": "2021-01-08T03:00:00.000Z",
+      "description": "abc",
+      "type": "Tipo 1"
+    },
+    {
+      "id": 3,
+      "name": "Produto B",
+      "date": "2021-01-09T03:00:00.000Z",
+      "description": "Descrição B",
+      "type": "Tipo 3"
+    }
+  ]
 }
