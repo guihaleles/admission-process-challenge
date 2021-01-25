@@ -15,7 +15,7 @@ export interface User{
 })
 export class AuthService {
   //Trocar de true para false para ativar login
-  private loggedIn = new BehaviorSubject<boolean>(true);
+  private loggedIn = new BehaviorSubject<boolean>(false);
   private user:User; 
 
   get isLoggedIn() {
