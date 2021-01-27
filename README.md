@@ -5,7 +5,7 @@ Run npm install.
 # Server
 Run ng serve for a dev server. Navigate to http://localhost:4200/. Run json-server --watch db.json.
 
-# Desafio
+# Desafio (pt-BR)
 
 Crie um projeto em angular 9, escolhendo o Sass como pré-processador de CSS. <br />
 Crie uma página de Login (Sem autenticação no backend), defina um login e senha estático (login: concert, senha: prova). <br />
