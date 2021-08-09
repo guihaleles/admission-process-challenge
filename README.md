@@ -1,5 +1,5 @@
-# Concert-challenge
-Run cd concert-challenge.
+# Challenge
+Run cd Challenge.
 Run npm install.
 
 # Server
