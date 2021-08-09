@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "concert-challenge": {
+    "con-challenge": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/concert-challenge",
+            "outputPath": "dist/con-challenge",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "concert-challenge:build"
+            "browserTarget": "con-challenge:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "concert-challenge:build:production"
+              "browserTarget": "con-challenge:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "concert-challenge:build"
+            "browserTarget": "con-challenge:build"
           }
         },
         "test": {
@@ -111,16 +111,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "concert-challenge:serve"
+            "devServerTarget": "con-challenge:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "concert-challenge:serve:production"
+              "devServerTarget": "con-challenge:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "concert-challenge"
+  "defaultProject": "con-challenge"
 }

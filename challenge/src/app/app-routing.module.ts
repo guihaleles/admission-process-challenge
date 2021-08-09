@@ -4,8 +4,6 @@ import { LoginComponent } from '../app/login/login.component';
 import { ClientComponent } from './client/client.component';
 import { ProductComponent } from './product/product.component';
 import { AuthGuard } from './services/auth.guard';
-import { ThemeComponent } from './theme/theme.component';
-
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -19,10 +17,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./product/product.module').then((m) => m.ProductModule),
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'theme',
-    component: ThemeComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

@@ -14,10 +14,9 @@ import { RequestInterceptor } from './interceptor/request-interceptor.intercepto
 import { ProductModule } from './product/product.module';
 import { SharedModule } from './shared/material/shared.module';
 import { ClientModule } from './client/client.module';
-import { ThemeComponent } from './theme/theme.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ThemeComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

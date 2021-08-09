@@ -14,14 +14,17 @@ import { delay } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
-  title = 'concert-challenge';
+  title = 'con-challenge';
   isLoggedIn$: Observable<boolean>;
   isloading: boolean = false;
-  isOpen = true; 
-  constructor(private authService: AuthService, private globalService:GlobalService) { }
+  isOpen = true;
+  constructor(
+    private authService: AuthService,
+    private globalService: GlobalService
+  ) {}
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn;
@@ -32,18 +35,16 @@ export class AppComponent {
     this.isOpen = !this.isOpen;
   }
 
-  subscribe(){
+  subscribe() {
     this.globalService.loadigSubject
-                  .pipe(
-                    // To avoid an error
-                    delay(0),
-                  )
-                  .subscribe(
-                    (data:boolean) => {
-                      this.isloading = data;
-                      console.log("app componente change") 
-                      console.log(data)
-                    }
-                  )
+      .pipe(
+        // To avoid an error
+        delay(0)
+      )
+      .subscribe((data: boolean) => {
+        this.isloading = data;
+        console.log('app componente change');
+        console.log(data);
+      });
   }
 }
